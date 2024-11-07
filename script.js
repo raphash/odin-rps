@@ -44,7 +44,6 @@ function playRound(computerChoice, humanChoice) {
   for (let possibilty in possibilities) {
     // Check if computer wins.
     if (computerChoice === possibilty && humanChoice === possibilities[possibilty]) {
-      console.log(`You lose! ${possibilty} wins ${possibilities[possibilty]}!`);
       roundWinner = "Computer";
       computerScore++;
       break;
@@ -52,7 +51,6 @@ function playRound(computerChoice, humanChoice) {
 
     // Check if human wins.
     if (humanChoice === possibilty && computerChoice === possibilities[possibilty]) {
-      console.log(`You win! ${possibilty} wins ${possibilities[possibilty]}!`);
       roundWinner = "You";
       humanScore++;
       break;
@@ -60,8 +58,7 @@ function playRound(computerChoice, humanChoice) {
 
     // With both choose the same is tie.
     if (humanChoice === computerChoice) {
-      console.log(`Tie! ${humanChoice} vs ${computerChoice}.`);
-      roundWinner = "Tie!";
+      roundWinner = "Tie";
       break;
     }
   }
