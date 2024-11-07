@@ -56,7 +56,7 @@ function playRound(computerChoice, humanChoice) {
       break;
     }
 
-    // With both choose the same is tie.
+    // When both choose the same is tie.
     if (humanChoice === computerChoice) {
       roundWinner = "Tie";
       break;
