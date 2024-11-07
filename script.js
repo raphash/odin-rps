@@ -1,6 +1,6 @@
 let computerScore = 0;
 let humanScore = 0;
-let roundWinner = "TIE"
+let roundWinner = "TIE";
 
 function getComputerChoice() {
   const choice = Math.floor(Math.random() * 3);
@@ -9,7 +9,6 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  // Allowed choices
   let userChoice;
   const allowedChoices = {
     "rock": "rock",
@@ -17,7 +16,7 @@ function getHumanChoice() {
     "scissor": "scissor"
   };
 
-  // While the user choice is not in allowedChoices: prompt user.
+  // While the user choice is not in allowedChoices.
   while (!(allowedChoices[userChoice]) && (userChoice !== null)) {
     userChoice = prompt(`Rock, paper or scissor? | ${humanScore} x ${computerScore} | Winner: ${roundWinner}`);
 
@@ -27,20 +26,21 @@ function getHumanChoice() {
     }
   }
 
-  // If the user choice matches and return then.
+  // If the user choice matches then return it.
   if (allowedChoices[userChoice]) {
     return allowedChoices[userChoice];
   }
 }
 
 function playRound(computerChoice, humanChoice) {
+  // Victory possibilities.
   const possibilities = {
     "rock": "scissor",
     "paper": "rock",
     "scissor": "paper"
-  }
+  };
 
-  // Loop through the possibilities
+  // Loop through the possibilities.
   for (const possibilty in possibilities) {
     // Check if computer wins.
     if (computerChoice === possibilty && humanChoice === possibilities[possibilty]) {
@@ -56,7 +56,7 @@ function playRound(computerChoice, humanChoice) {
       break;
     }
 
-    // When both choose the same is tie.
+    // When both choose the same choice is tie.
     if (humanChoice === computerChoice) {
       roundWinner = "TIE";
       break;
@@ -70,13 +70,13 @@ function playGame() {
   while (computerScore !== 5 || humanScore !== 5) {
     playRound(getComputerChoice(), getHumanChoice());
 
-    // Show computer wins
+    // Show computer wins.
     if (computerScore === 5) {
       alert(`COMPUTER WINS! ${computerScore} x ${humanScore}`);
       break;
     }
     
-    // Show human wins
+    // Show human wins.
     if (humanScore === 5) {
       alert(`YOU WIN! ${humanScore} x ${computerScore}`);
       break;
