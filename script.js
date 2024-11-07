@@ -1,6 +1,6 @@
 let computerScore = 0;
 let humanScore = 0;
-let roundWinner = "First Round"
+let roundWinner = "-"
 
 function getComputerChoice() {
   let choice = Math.floor(Math.random() * 3);
