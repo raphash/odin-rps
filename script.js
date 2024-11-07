@@ -1,9 +1,9 @@
 let computerScore = 0;
 let humanScore = 0;
-let roundWinner = "-"
+let roundWinner = "TIE"
 
 function getComputerChoice() {
-  let choice = Math.floor(Math.random() * 3);
+  const choice = Math.floor(Math.random() * 3);
 
   return ["rock", "paper", "scissor"][choice];
 }
@@ -11,7 +11,7 @@ function getComputerChoice() {
 function getHumanChoice() {
   // Allowed choices
   let userChoice;
-  let allowedChoices = {
+  const allowedChoices = {
     "rock": "rock",
     "paper": "paper",
     "scissor": "scissor"
@@ -34,31 +34,31 @@ function getHumanChoice() {
 }
 
 function playRound(computerChoice, humanChoice) {
-  let possibilities = {
+  const possibilities = {
     "rock": "scissor",
     "paper": "rock",
     "scissor": "paper"
   }
 
   // Loop through the possibilities
-  for (let possibilty in possibilities) {
+  for (const possibilty in possibilities) {
     // Check if computer wins.
     if (computerChoice === possibilty && humanChoice === possibilities[possibilty]) {
-      roundWinner = "Computer";
+      roundWinner = "COMPUTER";
       computerScore++;
       break;
     }
 
     // Check if human wins.
     if (humanChoice === possibilty && computerChoice === possibilities[possibilty]) {
-      roundWinner = "You";
+      roundWinner = "YOU";
       humanScore++;
       break;
     }
 
     // When both choose the same is tie.
     if (humanChoice === computerChoice) {
-      roundWinner = "Tie";
+      roundWinner = "TIE";
       break;
     }
   }
@@ -72,13 +72,13 @@ function playGame() {
 
     // Show computer wins
     if (computerScore === 5) {
-      alert(`Computer wins! ${computerScore} x ${humanScore}`);
+      alert(`COMPUTER WINS! ${computerScore} x ${humanScore}`);
       break;
     }
     
     // Show human wins
     if (humanScore === 5) {
-      alert(`You win! ${humanScore} x ${computerScore}`);
+      alert(`YOU WIN! ${humanScore} x ${computerScore}`);
       break;
     }
   }
