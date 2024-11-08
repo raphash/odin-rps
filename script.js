@@ -36,3 +36,17 @@ function getHumanChoice() {
     }
   }
 }
+
+function playRound(humanChoice, computerChoice) {
+  let cases = `paper:rock rock:scissors scissors:paper`;
+  let isHumanWinner = cases.includes(`${humanChoice}:${computerChoice}`);
+  let isComputerWinner = cases.includes(`${computerChoice}:${humanChoice}`);
+
+  if (isHumanWinner) {
+    console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+  } else if (isComputerWinner) {
+    console.log(`You lose! ${computerChoice} beats ${humanChoice}.`)
+  } else {
+    console.log(`It's a draw! ${humanChoice} x ${computerChoice}.`);
+  }
+}
