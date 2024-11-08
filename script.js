@@ -14,7 +14,6 @@ function getHumanChoice() {
   // If nothing in input return.
   if (!choice) return;
 
-  // This ends the game if user cancel.
   while (true) {
     // Choice is true? Convert to lowercase.
     switch (choice && choice.toLowerCase()) {
