@@ -1,89 +1,15 @@
-//
-
-let computerScore = 0;
-let humanScore = 0;
-let roundWinner = "TIE";
+// PSEUDOCODE:
+// 1: Generate a random number.
+// 2: Using the generated number return "Rock", "Paper" or "Scissors".
 
 function getComputerChoice() {
-  const choice = Math.floor(Math.random() * 3);
+  let choice = Math.floor(Math.random() * 3);
 
-  return ["rock", "paper", "scissor"][choice];
-}
-
-function getHumanChoice() {
-  let userChoice;
-  const allowedChoices = {
-    "rock": "rock",
-    "paper": "paper",
-    "scissor": "scissor"
-  };
-
-  // While the user choice is not in allowedChoices.
-  while (!(allowedChoices[userChoice]) && (userChoice !== null)) {
-    userChoice = prompt(`Rock, paper or scissor? | ${humanScore} x ${computerScore} | Winner: ${roundWinner}`);
-
-    // If choice is not undefined or null convert it to lowercase.
-    if (userChoice != null) {
-      userChoice = userChoice.toLowerCase();
-    }
-  }
-
-  // If the user choice matches then return it.
-  if (allowedChoices[userChoice]) {
-    return allowedChoices[userChoice];
+  switch (choice) {
+    case 0: return "Rock";
+    case 1: return "Paper";
+    case 2: return "Scissors";
   }
 }
 
-function playRound(computerChoice, humanChoice) {
-  // Victory possibilities.
-  const possibilities = {
-    "rock": "scissor",
-    "paper": "rock",
-    "scissor": "paper"
-  };
-
-  // Loop through the possibilities.
-  for (const possibilty in possibilities) {
-    // Check if computer wins.
-    if (computerChoice === possibilty && humanChoice === possibilities[possibilty]) {
-      roundWinner = "COMPUTER";
-      computerScore++;
-      break;
-    }
-
-    // Check if human wins.
-    if (humanChoice === possibilty && computerChoice === possibilities[possibilty]) {
-      roundWinner = "YOU";
-      humanScore++;
-      break;
-    }
-
-    // When both choose the same choice is tie.
-    if (humanChoice === computerChoice) {
-      roundWinner = "TIE";
-      break;
-    }
-  }
-}
-
-function playGame() {
-  
-  // Runs until the score is five.
-  while (computerScore !== 5 || humanScore !== 5) {
-    playRound(getComputerChoice(), getHumanChoice());
-
-    // Show computer wins.
-    if (computerScore === 5) {
-      alert(`COMPUTER WINS! ${computerScore} x ${humanScore}`);
-      break;
-    }
-    
-    // Show human wins.
-    if (humanScore === 5) {
-      alert(`YOU WIN! ${humanScore} x ${computerScore}`);
-      break;
-    }
-  }
-}
-
-playGame();
+console.log(getComputerChoice());
