@@ -28,6 +28,8 @@ function getHumanChoice() {
 }
 
 function playGame() {
+  let humanChoice;
+  let computerChoice;
   let humanScore = 0;
   let computerScore = 0;
 
@@ -52,8 +54,8 @@ function playGame() {
 
   // Play five rounds.
   for (let i = 0; i < 5; i++) {
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
+    humanChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
 
     if (humanChoice == null) break;
     
@@ -65,8 +67,10 @@ function playGame() {
     console.log(`You win! ${humanScore} x ${computerScore}`);
   } else if (computerScore > humanScore) {
     console.log(`You lose! ${computerScore} x ${humanScore}`);
-  } else {
+  } else if (humanChoice != null) {
     console.log(`It's a draw! ${humanScore} x ${computerScore}`)
+  } else {
+    console.log(`Good bye!`);
   }
 }
 
