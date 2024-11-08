@@ -1,5 +1,5 @@
 function getComputerChoice() {
-  let choice = Math.floor(Math.random() * 3);
+  const choice = Math.floor(Math.random() * 3);
 
   switch (choice) {
     case 0: return "rock";
@@ -11,12 +11,12 @@ function getComputerChoice() {
 function getHumanChoice() {
   let choice = prompt("Rock, paper or scissors?");
 
-  // If nothing in input return.
+  // If input is null return.
   if (!choice) return;
 
   while (true) {
-    // Choice is true? Convert to lowercase.
-    switch (choice && choice.toLowerCase()) {
+    // Convert to lowercase and return the choice else ask again.
+    switch (choice.toLowerCase()) {
       case "rock": return "rock";
       case "paper": return "paper";
       case "scissors": return "scissors";
@@ -35,8 +35,8 @@ function playGame() {
 
   // Function to play a round.
   function playRound(humanChoice, computerChoice) {
-    // Victory possibilities.
-    let cases = `paper:rock rock:scissors scissors:paper`;
+    // Victory possibilities winner:loser.
+    const cases = `paper:rock rock:scissors scissors:paper`;
     let isHumanWinner = cases.includes(`${humanChoice}:${computerChoice}`);
     let isComputerWinner = cases.includes(`${computerChoice}:${humanChoice}`);
 
@@ -52,7 +52,7 @@ function playGame() {
     }
   }
 
-  // Play five rounds.
+  // Start five rounds.
   for (let i = 0; i < 5; i++) {
     humanChoice = getHumanChoice();
     computerChoice = getComputerChoice();
