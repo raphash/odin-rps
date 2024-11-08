@@ -1,13 +1,3 @@
-// PSEUDOCODE:
-// 1: Generate a random number.
-// 2: Using the generated number return "Rock", "Paper" or "Scissors".
-// 3: Get the human input
-// 4: Convert it to lowercase
-// 5: Return only "rock", "paper" or "scissors" else ask again
-
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
   let choice = Math.floor(Math.random() * 3);
 
@@ -21,9 +11,10 @@ function getComputerChoice() {
 function getHumanChoice() {
   let choice = prompt("Rock, paper or scissors?");
 
-  // This ends the game if user cancel.
-  if (!choice) return "Good bye!";
+  // If nothing in input return.
+  if (!choice) return;
 
+  // This ends the game if user cancel.
   while (true) {
     // Choice is true? Convert to lowercase.
     switch (choice && choice.toLowerCase()) {
@@ -37,16 +28,47 @@ function getHumanChoice() {
   }
 }
 
-function playRound(humanChoice, computerChoice) {
-  let cases = `paper:rock rock:scissors scissors:paper`;
-  let isHumanWinner = cases.includes(`${humanChoice}:${computerChoice}`);
-  let isComputerWinner = cases.includes(`${computerChoice}:${humanChoice}`);
+function playGame() {
+  let humanScore = 0;
+  let computerScore = 0;
 
-  if (isHumanWinner) {
-    console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
-  } else if (isComputerWinner) {
-    console.log(`You lose! ${computerChoice} beats ${humanChoice}.`)
+  // Function to play a round.
+  function playRound(humanChoice, computerChoice) {
+    // Victory possibilities.
+    let cases = `paper:rock rock:scissors scissors:paper`;
+    let isHumanWinner = cases.includes(`${humanChoice}:${computerChoice}`);
+    let isComputerWinner = cases.includes(`${computerChoice}:${humanChoice}`);
+
+    // Return the winner or tie.
+    if (isHumanWinner) {
+      console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+      humanScore++;
+    } else if (isComputerWinner) {
+      console.log(`You lose! ${computerChoice} beats ${humanChoice}.`)
+      computerScore++;
+    } else {
+      console.log(`It's a draw! ${humanChoice} x ${computerChoice}.`);
+    }
+  }
+
+  // Play five rounds.
+  for (let i = 0; i < 5; i++) {
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
+
+    if (humanChoice == null) break;
+    
+    playRound(humanChoice, computerChoice);
+  }
+
+  // Compute the winner or tie.
+  if (humanScore > computerScore) {
+    console.log(`You win! ${humanScore} x ${computerScore}`);
+  } else if (computerScore > humanScore) {
+    console.log(`You lose! ${computerScore} x ${humanScore}`);
   } else {
-    console.log(`It's a draw! ${humanChoice} x ${computerChoice}.`);
+    console.log(`It's a draw! ${humanScore} x ${computerScore}`)
   }
 }
+
+playGame() 
