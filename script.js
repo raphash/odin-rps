@@ -70,5 +70,3 @@ function playGame() {
     console.log(`Good bye!`);
   }
 }
-
-playGame()
