@@ -1,5 +1,7 @@
 const choices = document.querySelector(".choices");
 const results = document.querySelector(".results");
+const winner = document.querySelector(".winner");
+const reset = document.querySelector(".reset");
 
 function getComputerChoice() {
   const computerChoice = Math.floor(Math.random() * 3);
@@ -55,16 +57,39 @@ function playGame() {
       currentRound = 0;
       humanScore = 0;
       computerScore = 0;
+      
+      // This disable all choices when have a winner.
+      for (const element of choices.childNodes) {
+        if (element.nodeName.toLowerCase() == "button") {
+          element.setAttribute("disabled", "disabled")
+        }
+      }
+
+      reset.classList.add("show");
+      
+      // Enable the choice buttons, reset the winner label, 
+      // results label and disable the reset button.
+      reset.addEventListener("click", ()=>{
+        // Get all choice buttons in choices container.
+        for (const element of choices.childNodes) {
+          if (element.nodeName.toLowerCase() == "button") {
+            reset.classList.remove("show");
+            element.removeAttribute("disabled");
+            results.textContent = "";
+            winner.textContent = "";
+          }
+        }
+      })
     }
 
     function checkFinalWinner() {
       if (currentRound == 5) {
         if (humanScore > computerScore) {
-          console.log(`You win! ${humanScore} x ${computerScore}`);
+          winner.textContent = `You win! ${humanScore} x ${computerScore}`;
         } else if (computerScore > humanScore) {
-          console.log(`You lose! ${computerScore} x ${humanScore}`);
+          winner.textContent = `You lose! ${computerScore} x ${humanScore}`;
         } else if (humanChoice != null) {
-          console.log(`It's a draw! ${humanScore} x ${computerScore}`);
+          winner.textContent = `It's a draw! ${humanScore} x ${computerScore}`;
         } 
 
         resetGame();
@@ -82,4 +107,4 @@ function playGame() {
   });
 }
 
-playGame()
+playGame();

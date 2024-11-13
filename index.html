@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="raphash">
+    <link rel="stylesheet" href="styles.css">
     <title>The Odin Project - Rock, Paper, Scissors</title>
   </head>
 
@@ -16,7 +16,17 @@
         <button class="scissors">Scissors</button>
       </div>
 
-      <ul class="results"></ul>
+      <div class="results-container">
+        <h3>Results:</h3>
+        <ul class="results"></ul>
+      </div>
+      
+      <div class="winner-container">
+        <h3>Winner</h3>
+        <p class="winner"></p>
+      </div>
+
+      <button class="reset">New Game</button>
     </div>
 
     <script src="script.js"></script>
